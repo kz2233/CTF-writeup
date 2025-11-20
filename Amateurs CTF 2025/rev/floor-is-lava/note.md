@@ -56,6 +56,18 @@ d = right
 
 seemingly to be an upside-down grid
 
+there is 2 interesting line here 
+
+<pre>
+byte_555555558050 &= 7u;
+byte_555555558051 &= 7u;
+</pre>
+
+Turning the 8x8 grid into a Toroidal Geometry (a donut shape).
+1. If you are at **x=7** and move right (d), you wrap to **x=0**.
+2. If you are at **x=0** and move left (a), you wrap to **x=7**.
+3. The same applies vertically for **y=7** and **y=0**.
+
 ALSO, when each input is done, it updates the array in 8010 by this line of code (the 8010 array is predefined)
 
 <pre>
@@ -184,3 +196,36 @@ Forming the position:
   
 </pre> 
 
+After getting all the coordinate by using XOR difference and finding the bit shifted, it shows these coordinate 
+
+[(1, 0), (3, 0), (5, 0), (6, 0), (1, 1), (2, 1), (3, 1), (5, 1), (4, 2), (5, 2), (0, 3), (3, 3), (4, 3), (6, 3), (7, 3), (0, 4), (1, 4), (2, 4), (3, 4), (6, 4), (4, 5), (5, 5), (6, 5), (2, 6), (3, 6), (4, 6), (2, 7), (3, 7)]
+
+<pre>
+y\x  0 1 2 3 4 5 6 7
+0:   · █ · █ · █ █ ·
+1:   · █ █ █ · █ · ·
+2:   · · · · █ █ · ·
+3:   █ · · █ █ · █ █
+4:   █ █ █ █ · · █ ·
+5:   · · · · █ █ █ ·
+6:   · · █ █ █ · · ·
+7:   · · █ █ · · · ·
+
+y\x  0  1  2  3  4  5  6  7
+0:   .. 01 .. 05 .. 27 28 ..
+1:   .. 02 03 04 .. 26 .. ..
+2:   .. .. .. .. 24 25 .. ..
+3:   17 .. .. 22 23 .. 15 16
+4:   18 19 20 21 .. .. 14 ..
+5:   .. .. .. .. 11 12 13 ..
+6:   .. .. 08 09 10 .. .. ..
+7:   .. .. 07 06 .. .. .. ..
+</pre>
+
+by highlighting out the correct path and since this is a "Toroidal Geometry", starting from (0, 0), it ends at (6, 0)
+
+forming the path: dsddwwawddwddwwddsdddwdwdwwd
+
+after entering the path, the flag is revealed
+
+Flag: amateursCTF{l4va_r3v_05f0d4ff51fb}
