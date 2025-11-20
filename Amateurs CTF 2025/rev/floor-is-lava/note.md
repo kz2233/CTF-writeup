@@ -239,15 +239,15 @@ Around this range of assembly in IDA
 <pre>
 ...
 .text:00005555555553D7 loc_5555555553D7:                       ; CODE XREF: main+21C↓j
-.text:00005555555553D7                 mov     rax, [rbp+var_10]
-.text:00005555555553DB                 lea     rcx, ds:0[rax*4]
-.text:00005555555553E3                 mov     eax, [rbp+var_18]
+.text:00005555555553D7                 mov     rax, [rbp+var_10] ; load the current key 
+.text:00005555555553DB                 lea     rcx, ds:0[rax*4] ; shift the key in RAX left 2 bytes (like 0x11 become 0x1100) 
+.text:00005555555553E3                 mov     eax, [rbp+var_18] ; Load index var_18 = 0 
 .text:00005555555553E6                 cdqe
 .text:00005555555553E8                 lea     rdx, unk_555555558060
-.text:00005555555553EF                 movzx   eax, byte ptr [rax+rdx]
-.text:00005555555553F3                 movzx   eax, al
-.text:00005555555553F6                 or      rax, rcx
-.text:00005555555553F9                 mov     [rbp+var_10], rax
+.text:00005555555553EF                 movzx   eax, byte ptr [rax+rdx] ; load the input[var_18] (like d -> 3) 
+.text:00005555555553F3                 movzx   eax, al 
+.text:00005555555553F6                 or      rax, rcx ; OR the input into the shifted key (like 0 | 3 = 0x3)
+.text:00005555555553F9                 mov     [rbp+var_10], rax 
 .text:00005555555553FD                 add     [rbp+var_18], 1 ; increment of "var_18" 
 .text:0000555555555401
   
