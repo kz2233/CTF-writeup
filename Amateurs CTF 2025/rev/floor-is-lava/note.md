@@ -44,7 +44,7 @@ LABEL_12:
   }
 </pre>
 
-From it takes my input either w, a, s or d, and interpret them into position 8050 and 8051 like the graph (x,y)
+From here, it takes my input, either w, a, s or d, and interpret them into position 8050 and 8051 like the graph (x,y)
 
 w = down
 
